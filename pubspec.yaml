@@ -1,5 +1,5 @@
 name: kecy_mon_amour_chatapp
-description: A new Flutter project.
+description: A Task manager and chatapp made with flutter.
 
 # The following line prevents the package from being accidentally published to
 # pub.dev using `pub publish`. This is preferred for private packages.
