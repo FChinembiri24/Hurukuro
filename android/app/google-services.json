@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "767391862008",
+    "project_id": "taskchat-c9377",
+    "storage_bucket": "taskchat-c9377.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:767391862008:android:3a87fcd6e2f5f259f1ff0d",
+        "android_client_info": {
+          "package_name": "com.example.amour"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "767391862008-m3dd5cfnlq1tn4ic49d6565umt0vfvd0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCZ68TTirLLQ9kyvGcbcefQWOJKynagq-M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "767391862008-m3dd5cfnlq1tn4ic49d6565umt0vfvd0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

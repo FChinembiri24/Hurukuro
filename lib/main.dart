@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:kecy_mon_amour_chatapp/views/signIn.dart';
+import 'package:kecy_mon_amour_chatapp/views/signUp.dart';
 
 void main() {
   runApp(MyApp());
@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
        scaffoldBackgroundColor: Colors.black12,
         primarySwatch: Colors.blue,
       ),
-      home: SignIn(),
+      home: SignUp(),
     );
   }
 }
