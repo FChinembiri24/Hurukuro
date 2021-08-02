@@ -3,6 +3,10 @@ import 'package:kecy_mon_amour_chatapp/widgets/widget.dart';
 
 class SignIn extends StatefulWidget
 {
+   final Function toggle;
+
+  SignIn(this.toggle);
+
 
   _SignInState createState() => _SignInState();
 
@@ -87,11 +91,20 @@ class _SignInState extends State<SignIn>
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
         Text(
-          "Don't have an account",
+          "Have an account ",
           style: wordStyle(),
         ),
-        Text("Register now",
-        style:wordStyle4()
+        GestureDetector(
+          onTap: (){
+            
+             widget.toggle;
+          },
+                  child: Container(
+            padding: EdgeInsets.symmetric(vertical:8),
+            child: Text("Register now",
+            style:wordStyle4()
+            ),
+          ),
         )
                 ],
                 ),

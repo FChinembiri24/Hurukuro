@@ -1,5 +1,6 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:kecy_mon_amour_chatapp/views/signUp.dart';
+import 'package:kecy_mon_amour_chatapp/Helper/Authenticat.dart/Authanticate.dart';
 
 void main() {
   runApp(MyApp());
@@ -17,7 +18,10 @@ class MyApp extends StatelessWidget {
        scaffoldBackgroundColor: Colors.black12,
         primarySwatch: Colors.blue,
       ),
-      home: SignUp(),
+      home: FutureBuilder
+      (future: Firebase.initializeApp(),
+        builder:(context ,snapshot)=> Authenticater()
+      ),
     );
   }
 }

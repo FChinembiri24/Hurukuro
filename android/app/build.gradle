@@ -38,7 +38,7 @@ android {
         applicationId "com.example.amour"
         minSdkVersion 16
         targetSdkVersion 30
-        multiDexEnable true
+        multiDexEnabled true
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
     }
@@ -60,5 +60,5 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation platform('com.google.firebase:firebase-bom:28.3.0')
     implementation 'com.google.firebase:firebase-analytics'
-    implementation "com.android.support:multidex:1.0.3"
+    implementation "androidx.multidex:multidex:2.0.1" 
 }
