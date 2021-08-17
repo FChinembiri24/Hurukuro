@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:kecy_mon_amour_chatapp/views/signIn.dart';
 import 'package:kecy_mon_amour_chatapp/views/signUp.dart';
