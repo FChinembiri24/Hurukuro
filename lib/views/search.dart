@@ -1,7 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:kecy_mon_amour_chatapp/Helper/constants.dart';
 import 'package:kecy_mon_amour_chatapp/Services/UserSearch.dart';
 import 'package:kecy_mon_amour_chatapp/widgets/widget.dart';
+
+import 'convo.dart';
 
 class Search extends StatefulWidget {
   //Search({Key key}) : super(key: key);
@@ -16,18 +19,67 @@ class _SearchState extends State<Search> {
   late QuerySnapshot searchSnapshot;
   bool isLoading = false;
   bool haveUserSearched = false;
+
   /*= await FirebaseFirestore.instance
       .collection("User")
       .where("name", isEqualTo: "franko")
       .get();*/
 
   //create Chatroom
-  /* chatroomStart(String username){
-      List<String> users=[userName,myName
 
-      ];
-     searchMeths.createChatroom(chatRoomId, chatroomMap)
-  }*/
+  chatroomStart(String username) {
+    List<String> users = [username, Constants.myName];
+    String chatRoomId = getChatRoomId(username, Constants.myName);
+    Map<String, dynamic> chatroomMap = {
+      "users": users,
+      "chatRoomId": chatRoomId,
+    };
+    searchMeths.createChatroom(chatRoomId, chatroomMap);
+    Navigator.push(context,
+        MaterialPageRoute(builder: (context) => MeetingRoom(chatRoomId)));
+  }
+
+  Widget searchTile(
+    String userName,
+    String userEmail,
+  ) {
+    //TODO
+    return Container(
+      padding: EdgeInsets.all(20),
+      color: Colors.white60,
+      child: Row(children: [
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              userName,
+              style: wordStyle2(),
+            ),
+            Text(
+              userEmail,
+              style: wordStyle2(),
+            ),
+          ],
+        ),
+        Spacer(),
+        GestureDetector(
+          onTap: () {
+            //TODO
+            // create chatroom, and send user to conversation screen use push replacement
+          },
+          child: Container(
+            padding: EdgeInsets.symmetric(vertical: 10, horizontal: 18),
+            decoration: BoxDecoration(
+              color: Colors.lightBlue[500],
+              borderRadius: BorderRadius.circular(35),
+            ),
+            child: Text("Chat"),
+          ),
+        )
+      ]),
+    );
+  }
+
   initiateSearch() async {
     if (search.text.isNotEmpty) {
       setState(() {
@@ -54,13 +106,16 @@ class _SearchState extends State<Search> {
               itemCount: searchSnapshot.docs.length,
               shrinkWrap: true,
               itemBuilder: (context, index) {
-                return SearchTile(
+                return searchTile(
                     searchSnapshot.docs[index].get("name").toString(),
                     searchSnapshot.docs[index].get("email").toString());
               })
           : Container(child: CircularProgressIndicator());
     } else
-      return Container();
+      return Container(
+        color: Colors.amberAccent,
+        child: Text("Nothing"),
+      );
   }
 
   @override
@@ -112,45 +167,21 @@ class _SearchState extends State<Search> {
   }
 }
 
-class SearchTile extends StatelessWidget {
-  //const SearchTile({Key key}) : super(key: key);
-  final String userName;
+//class SearchTile extends StatelessWidget {
+//const SearchTile({Key key}) : super(key: key);
+/*  final String userName;
   final String userEmail;
   SearchTile(this.userName, this.userEmail);
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.all(20),
-      child: Row(children: [
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              userName,
-              style: wordStyle2(),
-            ),
-            Text(
-              userEmail,
-              style: wordStyle2(),
-            ),
-          ],
-        ),
-        Spacer(),
-        GestureDetector(
-          onTap: () {
-            //TODO
-            // create chatroom, and send user to conversation screen use push replacement
-          },
-          child: Container(
-            padding: EdgeInsets.symmetric(vertical: 10, horizontal: 18),
-            decoration: BoxDecoration(
-              color: Colors.lightBlue[900],
-              borderRadius: BorderRadius.circular(35),
-            ),
-            child: Text("Chat"),
-          ),
-        )
-      ]),
-    );
+    return 
+  }*/
+//}
+
+getChatRoomId(String a, String b) {
+  if (a.substring(0, 1).codeUnitAt(0) > b.substring(0, 1).codeUnitAt(0)) {
+    return "$b\_$a";
+  } else {
+    return "$a\_$b";
   }
 }

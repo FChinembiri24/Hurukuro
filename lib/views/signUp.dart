@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:kecy_mon_amour_chatapp/Helper/helperFunctions.dart';
 import 'package:kecy_mon_amour_chatapp/Services/UserSearch.dart';
 import 'package:kecy_mon_amour_chatapp/Services/auth.dart';
 import 'package:kecy_mon_amour_chatapp/views/chats.dart';
@@ -17,6 +18,7 @@ class _SignUpState extends State<SignUp> {
   bool isLoading = false;
   AuthMeths authMeths = new AuthMeths();
   SearchMeths searchMeths = new SearchMeths();
+  HelperFunctions helperFunctions = new HelperFunctions();
   final formKey = GlobalKey<FormState>();
   TextEditingController user = new TextEditingController();
   TextEditingController pass = new TextEditingController();
@@ -29,12 +31,17 @@ class _SignUpState extends State<SignUp> {
       setState(() {
         isLoading = true;
       });
-      authMeths.signUpWithEmailP(user, pass.text).then((value) =>
+      HelperFunctions.saveUserEmailSharedPreference(user);
+      HelperFunctions.saveUserNameSharedPreference(name);
+      authMeths.signUpWithEmailP(user, pass.text).then((value) {
+        if (value != null) {
           Navigator.pushReplacement(
-              context, MaterialPageRoute(builder: (context) => Chats())));
-
-      searchMeths.uploadInfo(userMap);
-      searchMeths.upload(user, name);
+              context, MaterialPageRoute(builder: (context) => Chats()));
+          HelperFunctions.saveUserLoggedInSharedPreference(true);
+          searchMeths.uploadInfo(userMap);
+          searchMeths.upload(user, name);
+        }
+      });
     }
   }
 

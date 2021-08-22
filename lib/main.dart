@@ -1,35 +1,64 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:kecy_mon_amour_chatapp/Helper/Authenticat.dart/Authanticate.dart';
+import 'package:kecy_mon_amour_chatapp/Helper/constants.dart';
+import 'Helper/helperFunctions.dart';
+import 'views/chats.dart';
 
 void main() {
   runApp(MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   // This widget is the root of your application.
+  @override
+  _MyAppState createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  bool getIn = false;
+  @override
+  void initState() {
+    getLoggedIn();
+    // TODO: implement initState
+    super.initState();
+  }
+
+  getLoggedIn() async {
+    return await HelperFunctions.getUserLoggedInSharedPreference()
+        .then((value) {
+      setState(() {
+        getIn = value!;
+       
+        
+      });
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
-      
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-       scaffoldBackgroundColor: Colors.black12,
-        primarySwatch: Colors.blue
-      ),
-      home: FutureBuilder
-      (future: Firebase.initializeApp(),
-        builder:(context ,snapshot)=> Authenticater()
-      ),
-    );
-  }
+          scaffoldBackgroundColor: Colors.black12, primarySwatch: Colors.blue),
+      home: FutureBuilder(
+          future: Firebase.initializeApp(),
+          builder: (context, snapshot) {
+          if(getIn)
+          {
+           return Chats();
+          }
+          else{
+          return Authenticater();
+           }
+          }
+    ));
+}
 }
 
 class MyHomePage extends StatefulWidget {
   MyHomePage({Key? key, required this.title}) : super(key: key);
-
-  
 
   final String title;
 
@@ -42,7 +71,6 @@ class _MyHomePageState extends State<MyHomePage> {
 
   void _incrementCounter() {
     setState(() {
-    
       _counter++;
     });
   }
