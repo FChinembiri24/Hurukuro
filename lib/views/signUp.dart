@@ -47,11 +47,13 @@ class _SignUpState extends State<SignUp> {
 
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: appBarMain(context),
+      appBar: appBarMain(context, "join our community today!!"),
       body: isLoading
-          ? Container(
-              child: Center(
-                child: CircularProgressIndicator(),
+          ? SingleChildScrollView(
+              child: Container(
+                child: Center(
+                  child: CircularProgressIndicator(),
+                ),
               ),
             )
           : Container(
@@ -144,6 +146,7 @@ class _SignUpState extends State<SignUp> {
                           ),
                           SizedBox(height: 30),
                           GestureDetector(
+                            // ignore: todo
                             onTap: () => //TODO
                                 authMeths,
                             child: Container(

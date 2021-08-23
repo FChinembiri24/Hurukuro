@@ -43,6 +43,7 @@ class _SearchState extends State<Search> {
     String userName,
     String userEmail,
   ) {
+    // ignore: todo
     //TODO
     return Container(
       padding: EdgeInsets.all(20),
@@ -64,8 +65,10 @@ class _SearchState extends State<Search> {
         Spacer(),
         GestureDetector(
           onTap: () {
+            // ignore: todo
             //TODO
             // create chatroom, and send user to conversation screen use push replacement
+            chatroomStart(userName);
           },
           child: Container(
             padding: EdgeInsets.symmetric(vertical: 10, horizontal: 18),
@@ -126,7 +129,7 @@ class _SearchState extends State<Search> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: appBarMain(context),
+      appBar: appBarMain(context, Constants.myName + " Find for colleagues"),
       body: Container(
           child: Column(
         children: [

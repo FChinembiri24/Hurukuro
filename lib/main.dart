@@ -1,7 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:kecy_mon_amour_chatapp/Helper/Authenticat.dart/Authanticate.dart';
-import 'package:kecy_mon_amour_chatapp/Helper/constants.dart';
+
 import 'Helper/helperFunctions.dart';
 import 'views/chats.dart';
 
@@ -20,7 +20,8 @@ class _MyAppState extends State<MyApp> {
   @override
   void initState() {
     getLoggedIn();
-    // TODO: implement initState
+    // Firebase.initializeApp();
+
     super.initState();
   }
 
@@ -29,8 +30,6 @@ class _MyAppState extends State<MyApp> {
         .then((value) {
       setState(() {
         getIn = value!;
-       
-        
       });
     });
   }
@@ -38,23 +37,21 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-          scaffoldBackgroundColor: Colors.black12, primarySwatch: Colors.blue),
-      home: FutureBuilder(
-          future: Firebase.initializeApp(),
-          builder: (context, snapshot) {
-          if(getIn)
-          {
-           return Chats();
-          }
-          else{
-          return Authenticater();
-           }
-          }
-    ));
-}
+        title: 'Flutter Demo',
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData(
+            scaffoldBackgroundColor: Colors.black12,
+            primarySwatch: Colors.blue),
+        home: FutureBuilder(
+            future: Firebase.initializeApp(),
+            builder: (context, snapshot) {
+              if (getIn) {
+                return Chats();
+              } else {
+                return Authenticater();
+              }
+            }));
+  }
 }
 
 class MyHomePage extends StatefulWidget {
