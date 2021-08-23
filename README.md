@@ -1,6 +1,6 @@
 # Hurukuro
 
-A flutter chat and project management application
+A flutter chat and project management application with firestore used for the database and authentication.
 
 ## AMOUR
 
