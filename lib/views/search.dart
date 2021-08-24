@@ -35,7 +35,7 @@ class _SearchState extends State<Search> {
       "chatRoomId": chatRoomId,
     };
     searchMeths.createChatroom(chatRoomId, chatroomMap);
-    Navigator.push(context,
+    Navigator.pushReplacement(context,
         MaterialPageRoute(builder: (context) => MeetingRoom(chatRoomId)));
   }
 
@@ -129,7 +129,7 @@ class _SearchState extends State<Search> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: appBarMain(context, Constants.myName + " Find for colleagues"),
+      appBar: appBarMain(context, Constants.myName + " find colleagues"),
       body: Container(
           child: Column(
         children: [

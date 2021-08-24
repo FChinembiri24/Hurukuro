@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:kecy_mon_amour_chatapp/Helper/Authenticat.dart/Authanticate.dart';
 import 'package:kecy_mon_amour_chatapp/Helper/constants.dart';
 import 'package:kecy_mon_amour_chatapp/Helper/helperFunctions.dart';
+import 'package:kecy_mon_amour_chatapp/Helper/theme.dart';
 import 'package:kecy_mon_amour_chatapp/Services/auth.dart';
 import 'package:kecy_mon_amour_chatapp/Services/messages.dart';
 import 'package:kecy_mon_amour_chatapp/views/convo.dart';
@@ -102,45 +103,55 @@ class MeetingRoomTile extends StatelessWidget {
   MeetingRoomTile({required this.userName, required this.meetingRoomId});
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {
-        Navigator.push(
-            context,
-            MaterialPageRoute(
-                builder: (context) => MeetingRoom(meetingRoomId)));
-      },
-      child: Container(
-        color: Colors.lightBlue,
-        padding: EdgeInsets.symmetric(horizontal: 24, vertical: 20),
-        child: Row(
-          children: [
-            Container(
-              height: 30,
-              width: 30,
-              decoration: BoxDecoration(
-                  color: Colors.blueAccent,
-                  borderRadius: BorderRadius.circular(30)),
-              child: Text(userName.substring(0, 1).toUpperCase(),
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 16,
-                      fontFamily: 'OverpassRegular',
-                      fontWeight: FontWeight.w300)),
-            ),
-            SizedBox(
-              width: 12,
-            ),
-            Text(userName,
-                textAlign: TextAlign.start,
-                style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 16,
-                    fontFamily: 'OverpassRegular',
-                    fontWeight: FontWeight.w300))
-          ],
+    return Column(children: [
+      GestureDetector(
+        onTap: () {
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => MeetingRoom(meetingRoomId)));
+        },
+        child: Container(
+          color: Colors.lightBlue,
+          padding: EdgeInsets.symmetric(horizontal: 24, vertical: 20),
+          child: Column(
+            children: [
+              Row(
+                children: [
+                  Container(
+                    height: 30,
+                    width: 30,
+                    decoration: BoxDecoration(
+                        border: Border.all(color: Colors.black12),
+                        color: CustomTheme.colorAccent,
+                        borderRadius: BorderRadius.circular(30)),
+                    child: Text(userName.substring(0, 1).toUpperCase(),
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 16,
+                            fontFamily: 'OverpassRegular',
+                            fontWeight: FontWeight.w300)),
+                  ),
+                  SizedBox(
+                    width: 12,
+                  ),
+                  Text(userName,
+                      textAlign: TextAlign.start,
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 16,
+                          fontFamily: 'OverpassRegular',
+                          fontWeight: FontWeight.w300))
+                ],
+              ),
+            ],
+          ),
         ),
       ),
-    );
+      SizedBox(
+        height: 1,
+      )
+    ]);
   }
 }

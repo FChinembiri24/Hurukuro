@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 AppBar appBarMain(BuildContext context, String name) {
   return AppBar(
-    title: Text("Hello "),
+    title: Text("Hello " + name),
     elevation: 0.0,
     centerTitle: false,
   );

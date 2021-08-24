@@ -71,10 +71,13 @@ class _MeetingRoomState extends State<MeetingRoom> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.chatroomId),
+        title: Text(widget.chatroomId
+            .toString()
+            .replaceAll("_", "")
+            .replaceAll(Constants.myName, "")),
       ),
       body: Container(
-        child: Column(
+        child: Stack(
           children: [
             convoList(),
             Container(
@@ -106,21 +109,24 @@ class _MeetingRoomState extends State<MeetingRoom> {
                         msg.clear();
                       },
                       child: Container(
-                        height: 40,
-                        width: 40,
-                        alignment: Alignment.center,
-                        decoration: BoxDecoration(
-                            gradient: LinearGradient(
-                                colors: [
-                                  const Color(0x36FFFFFF),
-                                  const Color(0x0FFFFFFF)
-                                ],
-                                begin: FractionalOffset.topLeft,
-                                end: FractionalOffset.bottomRight),
-                            borderRadius: BorderRadius.circular(40)),
-                        padding: EdgeInsets.all(12),
-                        child: Icon(Icons.send_sharp),
-                      ),
+                          height: 40,
+                          width: 40,
+                          alignment: Alignment.center,
+                          decoration: BoxDecoration(
+                              gradient: LinearGradient(
+                                  colors: [
+                                    const Color(0x36FFFFFF),
+                                    const Color(0x0FFFFFFF)
+                                  ],
+                                  begin: FractionalOffset.topLeft,
+                                  end: FractionalOffset.bottomRight),
+                              borderRadius: BorderRadius.circular(40)),
+                          padding: EdgeInsets.all(12),
+                          child: Image.asset(
+                            "assets/send.png",
+                            height: 25,
+                            width: 25,
+                          )),
                     ),
                   ],
                 ),
