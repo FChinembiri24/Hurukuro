@@ -51,6 +51,7 @@ class _MeetingRoomState extends State<MeetingRoom> {
         "sendBy": Constants.myName,
         "timeStamp": DateTime.now().microsecondsSinceEpoch,
       };
+      msg.clear();
       Messages().addMessages(widget.chatroomId, msgMap).then(() {
         msg.clear();
       });
