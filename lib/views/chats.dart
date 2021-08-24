@@ -26,22 +26,25 @@ class _ChatState extends State<Chats> {
             .where("users", arrayContains: Constants.myName)
             .snapshots(),
         builder: (context, snapshot) {
-          return snapshot.hasData
-              ? ListView.builder(
-                  itemCount: snapshot.data!.docs.length,
-                  itemBuilder: (context, index) {
-                    return MeetingRoomTile(
-                        userName: snapshot.data!.docs[index]
-                            .get("chatRoomId")
-                            .toString()
-                            .replaceAll("_", "")
-                            .replaceAll(Constants.myName, ""),
-                        meetingRoomId: snapshot.data!.docs[index]
-                            .get("chatRoomId")
-                            .toString());
-                  },
-                )
-              : Container();
+          if (snapshot.hasError) {
+            return Container();
+          } else
+            return snapshot.hasData
+                ? ListView.builder(
+                    itemCount: snapshot.data!.docs.length,
+                    itemBuilder: (context, index) {
+                      return MeetingRoomTile(
+                          userName: snapshot.data!.docs[index]
+                              .get("chatRoomId")
+                              .toString()
+                              .replaceAll("_", "")
+                              .replaceAll(Constants.myName, ""),
+                          meetingRoomId: snapshot.data!.docs[index]
+                              .get("chatRoomId")
+                              .toString());
+                    },
+                  )
+                : Container();
         });
   }
 
@@ -112,7 +115,7 @@ class MeetingRoomTile extends StatelessWidget {
                   builder: (context) => MeetingRoom(meetingRoomId)));
         },
         child: Container(
-          color: Colors.lightBlue,
+          color: Colors.blueGrey,
           padding: EdgeInsets.symmetric(horizontal: 24, vertical: 20),
           child: Column(
             children: [

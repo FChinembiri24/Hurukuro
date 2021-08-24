@@ -45,10 +45,14 @@ class _MyAppState extends State<MyApp> {
         home: FutureBuilder(
             future: Firebase.initializeApp(),
             builder: (context, snapshot) {
-              if (getIn) {
-                return Chats();
+              if (snapshot.hasError) {
+                return Container();
               } else {
-                return Authenticater();
+                if (getIn) {
+                  return Chats();
+                } else {
+                  return Authenticater();
+                }
               }
             }));
   }

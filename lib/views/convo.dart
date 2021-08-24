@@ -27,7 +27,9 @@ class _MeetingRoomState extends State<MeetingRoom> {
             .orderBy("timeStamp", descending: false)
             .snapshots(),
         builder: (context, snapshot) {
-          if (snapshot.hasData) {
+          if (snapshot.hasError) {
+            return Container();
+          } else if (snapshot.hasData) {
             return ListView.builder(
               itemCount: snapshot.data!.docs.length,
               itemBuilder: (context, index) {
